@@ -1,6 +1,8 @@
 # Gallery
 
-## Build Setup
+A Gallery Images powered by  Nuxt JS and Unsplash API
+
+## Build Setup for Nuxt JS
 
 ```bash
 # install dependencies
@@ -18,3 +20,14 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Unsplash API
+
+Go to [Unsplash API](https://unsplash.com/developers) to retrieve your API KEY.
+
+Change the .env.dist to .env and change the API_KEY_URL.
+
+```bash
+# To load the images
+API_KEY_URL=<YOUR_API_KEY_URL>
+```

@@ -1,5 +1,5 @@
 {
-  "name": "Gallery",
+  "name": "gallery",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -20,14 +20,25 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "tailwindcss-dark-mode": "1.1.5",
+    "v-shared-element": "^3.0.3",
+    "vue-js-toggle-button": "^1.3.3"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.3.0",
+    "@nuxtjs/color-mode": "1.0.3",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@vue/test-utils": "^1.1.2",
     "babel-core": "7.0.0-bridge.0",
@@ -42,6 +53,7 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "vue-masonry-css": "^1.0.3"
   }
 }

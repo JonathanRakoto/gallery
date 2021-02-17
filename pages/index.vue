@@ -1,68 +1,71 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">Gallery</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div>
+    <Header>
+      <Search :query="query" @searchResult="searchResult" />
+    </Header>
+    <div class="container">
+      <Gallery :gallery="galleryImages" :query="query" />
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Gallery from '@/components/Gallery'
+import Header from '@/components/Header'
+import Search from '@/components/Search'
+
+export default {
+  components: { Gallery, Header, Search },
+  data() {
+    return {
+      galleryImages: [],
+      query: '',
+    }
+  },
+  head: {
+    bodyAttrs: {
+      class: 'mode',
+    },
+  },
+  mounted() {
+    this.query = 'Japan'
+    if (
+      this.$route.params.searchQuery !== '' &&
+      this.$route.params.searchQuery !== undefined
+    ) {
+      this.query = this.$route.params.searchQuery
+      this.loadGallery(this.$route.params.searchQuery)
+    } else {
+      this.loadGallery(this.query)
+    }
+  },
+  methods: {
+    async loadGallery(value) {
+      try {
+        const search = await this.$images.getSearch(value, 10)
+        this.galleryImages = search.results
+      } catch (error) {
+        console.log('Search', error)
+      }
+    },
+    async searchResult(value) {
+      this.query = value
+      await this.loadGallery(value)
+    },
+  },
+}
 </script>
 
 <style>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
+} color: #35495e;
 */
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
